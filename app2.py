@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.preprocessing import image
+# from tensorflow.keras.preprocessing import image
 from tensorflow import keras
 
 # Define the class indices dictionary
@@ -19,10 +19,12 @@ model = keras.models.load_model("model")
 # Process the uploaded image and make a prediction
 if uploaded_file is not None:
     # Load the image
-    img = image.load_img(uploaded_file, target_size=(224,224))
+    img = keras.preprocessing.image.load_img(uploaded_file, target_size=(224,224))
+    # img = image.load_img(uploaded_file, target_size=(224,224))
     
     # Preprocess the image
-    img_array = image.img_to_array(img)
+    # img_array = image.img_to_array(img)
+    img_array = keras.preprocessing.image.img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)
     img_array = img_array / 255.
 
